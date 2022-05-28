@@ -1,4 +1,4 @@
-package com.philvigus.brewery.web.model;
+package com.philvigus.brewery.web.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
