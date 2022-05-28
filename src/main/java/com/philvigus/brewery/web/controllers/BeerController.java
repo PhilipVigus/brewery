@@ -1,5 +1,6 @@
 package com.philvigus.brewery.web.controllers;
 
+import com.philvigus.brewery.services.BeerService;
 import com.philvigus.brewery.web.models.BeerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,14 @@ import java.util.UUID;
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
+  private final BeerService beerService;
+
+  public BeerController(BeerService beerService) {
+    this.beerService = beerService;
+  }
+
   @GetMapping("/{beerId}")
   public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
-    return new ResponseEntity<>(BeerDto.builder().build(), HttpStatus.OK);
+    return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
   }
 }
